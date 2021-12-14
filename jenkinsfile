@@ -1,13 +1,13 @@
 node('jdk-maveb') {
 
     stage('git') {
-    git branch: 'main', url: 'https://github.com/chinthasaeaswathi/java11-examples.git'
+    git branch: 'main', credentialsId: 'jdk-maven', url: 'https://github.com/chinthasaeaswathi/spring-petclinic.git'
     }
 
-    stage('bild') {
+    stage('build') {
         sh '''
           echo 'PATH=${PATH}'
-          echo 'M2_HOME'=${M2_HOME}'
+          echo 'M2_HOME=${M2_HOME}'
         '''  
      sh '/usr/local/apache-maven-3.8.4/bin/mvn clean package'
     }
